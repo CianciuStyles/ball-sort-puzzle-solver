@@ -1,9 +1,8 @@
 package io.github.cianciustyles.model
 
-import java.util.Deque
-
+@ExperimentalStdlibApi
 data class State(
-    val stacks: List<Deque<Color>>,
+    val stacks: List<ArrayDeque<Color>>,
     val g: Int,
     val h: Int,
     val previous: State? = null,

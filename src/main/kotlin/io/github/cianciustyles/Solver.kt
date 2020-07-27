@@ -2,17 +2,19 @@ package io.github.cianciustyles
 import io.github.cianciustyles.model.Action
 import io.github.cianciustyles.model.Color
 import io.github.cianciustyles.model.State
-import java.util.ArrayDeque
-import java.util.Deque
 import java.util.PriorityQueue
+import kotlin.collections.ArrayDeque
+import kotlin.collections.List
 
+@ExperimentalStdlibApi
 class Solver(
-    private val stacks: List<Deque<Color>>,
-    private val stackMaxSize: Int
+    private val stacks: List<ArrayDeque<Color>>,
+    private val stackMaxSize: Int = 4
 ) {
     fun solve(): List<Action> {
         val heap = PriorityQueue<State>()
         heap.add(State(deepCopy(stacks), 0, heuristic(stacks)))
+        val seen = mutableSetOf<List<ArrayDeque<Color>>>()
 
         while (!heap.isEmpty()) {
             val currentState = heap.poll()
@@ -21,26 +23,22 @@ class Solver(
             }
 
             val nextStates = generateActions(currentState)
-            for (nextState in nextStates)
+            for (nextState in nextStates) {
+                if (seen.contains(nextState.stacks)) continue
+
                 heap.add(nextState)
+                seen.add(nextState.stacks)
+            }
         }
 
         return listOf()
     }
 
-    private fun deepCopy(list: List<Deque<Color>>): List<Deque<Color>> {
-        val newList = mutableListOf<Deque<Color>>()
-        for (stack in list) {
-            val newStack = ArrayDeque<Color>()
-            for (color in stack)
-                newStack.addLast(color)
-            newList.add(newStack)
-        }
-
-        return newList.toList()
+    private fun deepCopy(list: List<ArrayDeque<Color>>): List<ArrayDeque<Color>> {
+        return list.map { ArrayDeque(it) }
     }
 
-    private fun heuristic(stacks: List<Deque<Color>>): Int {
+    private fun heuristic(stacks: List<ArrayDeque<Color>>): Int {
         var total = 0
 
         for (stack in stacks) {
@@ -74,7 +72,7 @@ class Solver(
 
                 if (isLegalMove(parentState.stacks, i, j)) {
                     val newStacks = deepCopy(parentState.stacks).toMutableList()
-                    val ballMoving = newStacks[i].pollLast()
+                    val ballMoving = newStacks[i].removeLast()
                     newStacks[j].addLast(ballMoving)
 
                     val action = Action(i, j, ballMoving)
@@ -87,14 +85,14 @@ class Solver(
         return nextStates.toList()
     }
 
-    private fun isLegalMove(stacks: List<Deque<Color>>, i: Int, j: Int): Boolean {
+    private fun isLegalMove(stacks: List<ArrayDeque<Color>>, i: Int, j: Int): Boolean {
         if (stacks[i].isEmpty())
             return false
 
         if (stacks[j].isEmpty())
             return true
 
-        return stacks[i].peekLast() == stacks[j].peekLast() && stacks[j].size < stackMaxSize
+        return stacks[i].last() == stacks[j].last() && stacks[j].size < stackMaxSize
     }
 
     private fun rebuildPath(finalState: State): List<Action> {

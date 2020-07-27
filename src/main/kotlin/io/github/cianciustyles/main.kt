@@ -1,10 +1,10 @@
 package io.github.cianciustyles
 
 import io.github.cianciustyles.model.Color
-import java.util.ArrayDeque
 
+@ExperimentalStdlibApi
 fun main() {
-    val stacks = listOf<ArrayDeque<Color>>(
+    val stacks = listOf(
         ArrayDeque(listOf(Color.RED, Color.LIGHT_GREEN, Color.LIGHT_GREEN, Color.LIGHT_GREEN)),
         ArrayDeque(listOf(Color.ORANGE, Color.RED, Color.PINK, Color.LIGHT_GREEN)),
         ArrayDeque(listOf(Color.PINK, Color.ORANGE, Color.RED, Color.ORANGE)),
@@ -14,7 +14,7 @@ fun main() {
         ArrayDeque()
     )
 
-    val solver = Solver(stacks, 4)
+    val solver = Solver(stacks)
     val steps = solver.solve()
 
     steps.forEach { step ->
