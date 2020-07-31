@@ -13,8 +13,8 @@ enum class Color(val code: Char) {
 
     companion object {
         private val colorMap = values()
-                .map { Pair(it.code, it) }
-                .toMap()
+            .map { Pair(it.code, it) }
+            .toMap()
 
         fun fromCode(code: Char) = colorMap.getValue(code)
     }

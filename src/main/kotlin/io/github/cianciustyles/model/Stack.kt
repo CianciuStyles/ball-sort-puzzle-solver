@@ -1,7 +1,7 @@
 package io.github.cianciustyles.model
 
 @ExperimentalStdlibApi
-class Stack(private val balls: ArrayDeque<Color>) {
+data class Stack(private val balls: ArrayDeque<Color>) {
     fun addLast(color: Color) = balls.addLast(color)
 
     fun copy() = Stack(ArrayDeque(balls))

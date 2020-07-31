@@ -1,19 +1,19 @@
 package io.github.cianciustyles
 import io.github.cianciustyles.model.Action
+import io.github.cianciustyles.model.Board
 import io.github.cianciustyles.model.Color
-import io.github.cianciustyles.model.Stack
 import io.github.cianciustyles.model.State
-import java.util.*
+import java.util.PriorityQueue
 
 @ExperimentalStdlibApi
 class Solver(
-    private val stacks: List<Stack>,
+    private val board: Board,
     private val stackMaxSize: Int = 4
 ) {
     fun solve(): List<Action> {
         val heap = PriorityQueue<State>()
-        heap.add(State(deepCopy(stacks), 0, heuristic(stacks)))
-        val seen = mutableSetOf<List<Stack>>()
+        heap.add(State(board.copy(), 0, heuristic(board)))
+        val seen = mutableSetOf<Board>()
 
         while (!heap.isEmpty()) {
             val currentState = heap.poll()
@@ -23,24 +23,20 @@ class Solver(
 
             val nextStates = generateActions(currentState)
             for (nextState in nextStates) {
-                if (seen.contains(nextState.stacks)) continue
+                if (seen.contains(nextState.board)) continue
 
                 heap.add(nextState)
-                seen.add(nextState.stacks)
+                seen.add(nextState.board)
             }
         }
 
         return listOf()
     }
 
-    private fun deepCopy(list: List<Stack>): List<Stack> {
-        return list.map { it.copy() }
-    }
-
-    private fun heuristic(stacks: List<Stack>): Int {
+    private fun heuristic(board: Board): Int {
         var total = 0
 
-        for (stack in stacks) {
+        for (stack in board.stacks) {
             val iterator = stack.iterator()
             var index = 0
             var firstColor: Color? = null
@@ -65,12 +61,12 @@ class Solver(
     private fun generateActions(parentState: State): List<State> {
         val nextStates = mutableListOf<State>()
 
-        for (i in stacks.indices) {
-            for (j in stacks.indices) {
+        for (i in board.stacks.indices) {
+            for (j in board.stacks.indices) {
                 if (i == j) continue
 
-                if (isLegalMove(parentState.stacks, i, j)) {
-                    val newStacks = deepCopy(parentState.stacks).toMutableList()
+                if (isLegalMove(parentState.board, i, j)) {
+                    val newStacks = parentState.board.copy()
                     val ballMoving = newStacks[i].removeLast()
                     newStacks[j].addLast(ballMoving)
 
@@ -84,14 +80,14 @@ class Solver(
         return nextStates.toList()
     }
 
-    private fun isLegalMove(stacks: List<Stack>, i: Int, j: Int): Boolean {
-        if (stacks[i].isEmpty())
+    private fun isLegalMove(board: Board, i: Int, j: Int): Boolean {
+        if (board[i].isEmpty())
             return false
 
-        if (stacks[j].isEmpty())
+        if (board[j].isEmpty())
             return true
 
-        return stacks[i].last() == stacks[j].last() && stacks[j].size < stackMaxSize
+        return board[i].last() == board[j].last() && board[j].size < stackMaxSize
     }
 
     private fun rebuildPath(finalState: State): List<Action> {

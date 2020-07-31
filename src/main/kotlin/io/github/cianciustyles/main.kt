@@ -1,23 +1,26 @@
 package io.github.cianciustyles
 
-import io.github.cianciustyles.model.Stack
+import io.github.cianciustyles.model.Board
 
 @ExperimentalStdlibApi
 fun main() {
-    val stacks = listOf(
-        Stack.of("MMMC"),
-        Stack.of("RVOG"),
-        Stack.of("CBVL"),
-        Stack.of("RVVL"),
-        Stack.of("LBPR"),
-        Stack.of("BPCP"),
-        Stack.of("MOGL"),
-        Stack.of("GRBO"),
-        Stack.of("OCPG"),
-        Stack.of(), Stack.of()
+    val board = Board.of(
+        """
+        MMMC
+        RVOG
+        CBVL
+        RVVL
+        LBPR
+        BPCP
+        MOGL
+        GRBO
+        OCPG
+        
+        
+    """
     )
 
-    val solver = Solver(stacks)
+    val solver = Solver(board)
     val steps = solver.solve()
 
     steps.forEach { println(it) }

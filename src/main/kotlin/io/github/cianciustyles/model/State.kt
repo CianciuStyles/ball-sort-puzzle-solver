@@ -2,7 +2,7 @@ package io.github.cianciustyles.model
 
 @ExperimentalStdlibApi
 data class State(
-    val stacks: List<Stack>,
+    val board: Board,
     val g: Int,
     val h: Int,
     val previous: State? = null,
