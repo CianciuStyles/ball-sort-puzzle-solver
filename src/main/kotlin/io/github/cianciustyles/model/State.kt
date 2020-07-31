@@ -2,7 +2,7 @@ package io.github.cianciustyles.model
 
 @ExperimentalStdlibApi
 data class State(
-    val stacks: List<ArrayDeque<Color>>,
+    val stacks: List<Stack>,
     val g: Int,
     val h: Int,
     val previous: State? = null,

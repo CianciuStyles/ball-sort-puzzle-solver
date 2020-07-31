@@ -1,20 +1,19 @@
 package io.github.cianciustyles
 import io.github.cianciustyles.model.Action
 import io.github.cianciustyles.model.Color
+import io.github.cianciustyles.model.Stack
 import io.github.cianciustyles.model.State
-import java.util.PriorityQueue
-import kotlin.collections.ArrayDeque
-import kotlin.collections.List
+import java.util.*
 
 @ExperimentalStdlibApi
 class Solver(
-    private val stacks: List<ArrayDeque<Color>>,
+    private val stacks: List<Stack>,
     private val stackMaxSize: Int = 4
 ) {
     fun solve(): List<Action> {
         val heap = PriorityQueue<State>()
         heap.add(State(deepCopy(stacks), 0, heuristic(stacks)))
-        val seen = mutableSetOf<List<ArrayDeque<Color>>>()
+        val seen = mutableSetOf<List<Stack>>()
 
         while (!heap.isEmpty()) {
             val currentState = heap.poll()
@@ -34,11 +33,11 @@ class Solver(
         return listOf()
     }
 
-    private fun deepCopy(list: List<ArrayDeque<Color>>): List<ArrayDeque<Color>> {
-        return list.map { ArrayDeque(it) }
+    private fun deepCopy(list: List<Stack>): List<Stack> {
+        return list.map { it.copy() }
     }
 
-    private fun heuristic(stacks: List<ArrayDeque<Color>>): Int {
+    private fun heuristic(stacks: List<Stack>): Int {
         var total = 0
 
         for (stack in stacks) {
@@ -85,7 +84,7 @@ class Solver(
         return nextStates.toList()
     }
 
-    private fun isLegalMove(stacks: List<ArrayDeque<Color>>, i: Int, j: Int): Boolean {
+    private fun isLegalMove(stacks: List<Stack>, i: Int, j: Int): Boolean {
         if (stacks[i].isEmpty())
             return false
 
