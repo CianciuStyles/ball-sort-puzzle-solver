@@ -51,16 +51,16 @@ class SolverTest {
             .hasSize(10)
             .isEqualTo(
                 listOf(
-                    Action(0, 2, Color.ORANGE),
-                    Action(1, 0, Color.BLUE),
-                    Action(1, 2, Color.ORANGE),
-                    Action(0, 1, Color.BLUE),
-                    Action(0, 1, Color.BLUE),
-                    Action(0, 2, Color.ORANGE),
-                    Action(1, 0, Color.BLUE),
-                    Action(1, 0, Color.BLUE),
-                    Action(1, 0, Color.BLUE),
-                    Action(1, 2, Color.ORANGE)
+                    Action(1, 2, Color.BLUE),
+                    Action(0, 1, Color.ORANGE),
+                    Action(0, 2, Color.BLUE),
+                    Action(1, 0, Color.ORANGE),
+                    Action(1, 0, Color.ORANGE),
+                    Action(1, 2, Color.BLUE),
+                    Action(0, 1, Color.ORANGE),
+                    Action(0, 1, Color.ORANGE),
+                    Action(0, 1, Color.ORANGE),
+                    Action(0, 2, Color.BLUE)
                 )
             )
     }
@@ -104,7 +104,7 @@ class SolverTest {
         val steps = solver.solve()
 
         // then
-        assertThat(steps).hasSize(11)
+        assertThat(steps).hasSize(12)
     }
 
     @Test
@@ -358,6 +358,31 @@ class SolverTest {
         val steps = solver.solve()
 
         // then
-        assertThat(steps).hasSize(31)
+        assertThat(steps).hasSize(32)
+    }
+
+    @Test
+    fun testLevel90() {
+        // given
+        val board = Board.of(
+                """
+            RORP
+            BBCP
+            CLOG
+            GROC
+            LCPL
+            RBLO
+            BGGP
+            
+            
+        """
+        )
+
+        // when
+        val solver = Solver(board)
+        val steps = solver.solve()
+
+        // then
+        assertThat(steps).hasSize(26)
     }
 }

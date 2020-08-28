@@ -17,17 +17,16 @@ class Solver(
 
         while (!heap.isEmpty()) {
             val currentState = heap.poll()
-            if (currentState.h == 0) {
+            if (seen.contains(currentState.board))
+                continue
+            if (currentState.h == 0)
                 return rebuildPath(currentState)
-            }
 
             val nextStates = generateActions(currentState)
-            for (nextState in nextStates) {
-                if (seen.contains(nextState.board)) continue
-
+            for (nextState in nextStates)
                 heap.add(nextState)
-                seen.add(nextState.board)
-            }
+
+            seen.add(currentState.board)
         }
 
         return listOf()

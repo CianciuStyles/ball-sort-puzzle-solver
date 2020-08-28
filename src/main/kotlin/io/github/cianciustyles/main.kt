@@ -6,18 +6,18 @@ import io.github.cianciustyles.model.Board
 fun main() {
     val board = Board.of(
         """
-        CCDB
-        GMPV
-        bRVO
-        ORPO
-        BYRD
-        DbDY
-        LRVb
-        LPVL
-        BCGM
-        MGYb
-        BLYG
-        OPCM
+        PGPD
+        BOBY
+        PBMO
+        MDVO
+        bLGL
+        ROLP
+        CMRR
+        VbbR
+        DLMC
+        CCVY
+        DGYY
+        BbVG
         
         
     """
@@ -26,5 +26,6 @@ fun main() {
     val solver = Solver(board)
     val steps = solver.solve()
 
+    println("Solution with ${steps.size} steps found")
     steps.forEach { println(it) }
 }
