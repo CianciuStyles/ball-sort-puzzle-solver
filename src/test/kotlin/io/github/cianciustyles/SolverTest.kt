@@ -51,16 +51,16 @@ class SolverTest {
             .hasSize(10)
             .isEqualTo(
                 listOf(
-                    Action(1, 2, Color.BLUE),
-                    Action(0, 1, Color.ORANGE),
-                    Action(0, 2, Color.BLUE),
-                    Action(1, 0, Color.ORANGE),
-                    Action(1, 0, Color.ORANGE),
-                    Action(1, 2, Color.BLUE),
-                    Action(0, 1, Color.ORANGE),
-                    Action(0, 1, Color.ORANGE),
-                    Action(0, 1, Color.ORANGE),
-                    Action(0, 2, Color.BLUE)
+                    Action(0, 2, Color.ORANGE),
+                    Action(1, 0, Color.BLUE),
+                    Action(1, 2, Color.ORANGE),
+                    Action(0, 1, Color.BLUE),
+                    Action(0, 1, Color.BLUE),
+                    Action(0, 2, Color.ORANGE),
+                    Action(1, 0, Color.BLUE),
+                    Action(1, 0, Color.BLUE),
+                    Action(1, 0, Color.BLUE),
+                    Action(1, 2, Color.ORANGE)
                 )
             )
     }
@@ -225,7 +225,7 @@ class SolverTest {
         val steps = solver.solve()
 
         // then
-        assertThat(steps).hasSize(26)
+        assertThat(steps).hasSize(24)
     }
 
     @Test
@@ -252,7 +252,7 @@ class SolverTest {
         val steps = solver.solve()
 
         // then
-        assertThat(steps).hasSize(36)
+        assertThat(steps).hasSize(35)
     }
 
     @Test
@@ -279,7 +279,7 @@ class SolverTest {
         val steps = solver.solve()
 
         // then
-        assertThat(steps).hasSize(38)
+        assertThat(steps).hasSize(39)
     }
 
     @Test
@@ -365,7 +365,7 @@ class SolverTest {
     fun testLevel90() {
         // given
         val board = Board.of(
-                """
+            """
             RORP
             BBCP
             CLOG
@@ -383,6 +383,6 @@ class SolverTest {
         val steps = solver.solve()
 
         // then
-        assertThat(steps).hasSize(26)
+        assertThat(steps).hasSize(25)
     }
 }

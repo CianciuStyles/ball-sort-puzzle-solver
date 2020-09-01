@@ -12,6 +12,8 @@ data class Stack(private val balls: ArrayDeque<Color>) {
             else -> false
         }
 
+    operator fun get(i: Int) = balls[i]
+
     override fun hashCode() = balls.hashCode()
 
     fun isEmpty() = balls.isEmpty()

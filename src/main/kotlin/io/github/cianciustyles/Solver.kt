@@ -3,6 +3,7 @@ import io.github.cianciustyles.model.Action
 import io.github.cianciustyles.model.Board
 import io.github.cianciustyles.model.Color
 import io.github.cianciustyles.model.State
+import java.lang.IndexOutOfBoundsException
 import java.util.PriorityQueue
 
 @ExperimentalStdlibApi
@@ -34,24 +35,26 @@ class Solver(
 
     private fun heuristic(board: Board): Int {
         var total = 0
+        val seen = mutableSetOf<Color>()
 
         for (stack in board.stacks) {
-            val iterator = stack.iterator()
-            var index = 0
-            var firstColor: Color? = null
+            if (stack.isEmpty()) continue
 
-            while (iterator.hasNext()) {
-                val ball = iterator.next()
-                if (index == 0)
-                    firstColor = ball
-                else if (ball != firstColor)
-                    total += 1
-
-                index++
+            val baseColor = stack[0]
+            if (seen.contains(baseColor)) {
+                total += stack.size
+                continue
             }
 
-            if (index > 0)
-                total += stackMaxSize - index
+            for (i in 1 until stack.size) {
+                try {
+                    if (stack[i] != baseColor) total += 1
+                } catch (e: IndexOutOfBoundsException) {
+                    total += 1
+                }
+            }
+
+            seen.add(baseColor)
         }
 
         return total
