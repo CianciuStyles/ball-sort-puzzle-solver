@@ -51,16 +51,16 @@ class SolverTest {
             .hasSize(10)
             .isEqualTo(
                 listOf(
-                    Action(0, 2, Color.ORANGE),
-                    Action(1, 0, Color.BLUE),
-                    Action(1, 2, Color.ORANGE),
-                    Action(0, 1, Color.BLUE),
-                    Action(0, 1, Color.BLUE),
-                    Action(0, 2, Color.ORANGE),
-                    Action(1, 0, Color.BLUE),
-                    Action(1, 0, Color.BLUE),
-                    Action(1, 0, Color.BLUE),
-                    Action(1, 2, Color.ORANGE)
+                    Action(1, 2, Color.BLUE),
+                    Action(0, 1, Color.ORANGE),
+                    Action(0, 2, Color.BLUE),
+                    Action(1, 0, Color.ORANGE),
+                    Action(1, 0, Color.ORANGE),
+                    Action(1, 2, Color.BLUE),
+                    Action(0, 1, Color.ORANGE),
+                    Action(0, 1, Color.ORANGE),
+                    Action(0, 1, Color.ORANGE),
+                    Action(0, 2, Color.BLUE)
                 )
             )
     }
@@ -104,7 +104,7 @@ class SolverTest {
         val steps = solver.solve()
 
         // then
-        assertThat(steps).hasSize(12)
+        assertThat(steps).hasSize(11)
     }
 
     @Test
@@ -279,7 +279,7 @@ class SolverTest {
         val steps = solver.solve()
 
         // then
-        assertThat(steps).hasSize(39)
+        assertThat(steps).hasSize(38)
     }
 
     @Test
@@ -331,7 +331,7 @@ class SolverTest {
         val steps = solver.solve()
 
         // then
-        assertThat(steps).hasSize(32)
+        assertThat(steps).hasSize(31)
     }
 
     @Test
@@ -358,7 +358,7 @@ class SolverTest {
         val steps = solver.solve()
 
         // then
-        assertThat(steps).hasSize(32)
+        assertThat(steps).hasSize(31)
     }
 
     @Test

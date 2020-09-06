@@ -2,8 +2,9 @@ package io.github.cianciustyles
 import io.github.cianciustyles.model.Action
 import io.github.cianciustyles.model.Board
 import io.github.cianciustyles.model.Color
+import io.github.cianciustyles.model.Stack
+import io.github.cianciustyles.model.StackSummary
 import io.github.cianciustyles.model.State
-import java.lang.IndexOutOfBoundsException
 import java.util.PriorityQueue
 
 @ExperimentalStdlibApi
@@ -34,27 +35,47 @@ class Solver(
     }
 
     private fun heuristic(board: Board): Int {
-        var total = 0
-        val seen = mutableSetOf<Color>()
-
+        val stackSummariesByColor = mutableMapOf<Color, PriorityQueue<StackSummary>>()
         for (stack in board.stacks) {
             if (stack.isEmpty()) continue
 
-            val baseColor = stack[0]
-            if (seen.contains(baseColor)) {
-                total += stack.size
-                continue
-            }
+            val (baseColor, stackSummary) = examineStack(stack)
+            stackSummariesByColor
+                .getOrPut(baseColor, { PriorityQueue() })
+                .add(stackSummary)
+        }
 
-            for (i in 1 until stack.size) {
-                try {
-                    if (stack[i] != baseColor) total += 1
-                } catch (e: IndexOutOfBoundsException) {
-                    total += 1
-                }
-            }
+        return countMisplacedColors(stackSummariesByColor)
+    }
 
-            seen.add(baseColor)
+    private fun examineStack(stack: Stack): Pair<Color, StackSummary> {
+        val baseColor = stack[0]
+        var baseColorPrefix = 1
+        var otherColors = 0
+
+        for (i in 1 until stack.size) {
+            if (stack[i] == baseColor) {
+                baseColorPrefix += 1
+            } else {
+                otherColors = stack.size - i
+                break
+            }
+        }
+
+        return baseColor to StackSummary(baseColorPrefix, otherColors)
+    }
+
+    private fun countMisplacedColors(stacksByColor: MutableMap<Color, PriorityQueue<StackSummary>>): Int {
+        var total = 0
+
+        for (summaries in stacksByColor.values) {
+            val stackWithLongestPrefix = summaries.poll()
+            total += stackWithLongestPrefix.otherColors
+
+            while (summaries.isNotEmpty()) {
+                val otherStack = summaries.poll()
+                total += otherStack.baseColorPrefix + otherStack.otherColors
+            }
         }
 
         return total
