@@ -385,4 +385,175 @@ class SolverTest {
         // then
         assertThat(steps).hasSize(25)
     }
+
+    @Test
+    fun testLevel100() {
+        // given
+        val board = Board.of(
+                """
+            POVL
+            CGCP
+            BPOL
+            PMRR
+            RVGR
+            MMGG
+            BCBL
+            VOBO
+            LVMC
+            
+            
+        """
+        )
+
+        // when
+        val solver = Solver(board)
+        val steps = solver.solve()
+
+        // then
+        assertThat(steps).hasSize(34)
+    }
+
+    @Test
+    fun testLevel125() {
+        // given
+        val board = Board.of(
+                """
+            BDCM
+            CDOC
+            GVBO
+            OLPP
+            MLLV
+            YBRb
+            DBbV
+            MGYY
+            VMDP
+            PbYR
+            RbLG
+            GRCO
+            
+            
+        """
+        )
+
+        // when
+        val solver = Solver(board)
+        val steps = solver.solve()
+
+        // then
+        assertThat(steps).hasSize(50)
+    }
+
+    @Test
+    fun testLevel150() {
+        // given
+        val board = Board.of(
+                """
+            PPMB
+            GRLR
+            OGLM
+            GCOM
+            RBPO
+            GCBV
+            MVOV
+            PCLB
+            CLVR
+            
+            
+        """
+        )
+
+        // when
+        val solver = Solver(board)
+        val steps = solver.solve()
+
+        // then
+        assertThat(steps).hasSize(35)
+    }
+
+    @Test
+    fun testLevel175() {
+        // given
+        val board = Board.of(
+                """
+            OMRV
+            YbPP
+            OGCB
+            LBYO
+            PBBM
+            bGVC
+            DPRb
+            OGDL
+            RMDC
+            CLYR
+            MGbY
+            VDLV
+            
+            
+        """
+        )
+
+        // when
+        val solver = Solver(board)
+        val steps = solver.solve()
+
+        // then
+        assertThat(steps).hasSize(51)
+    }
+
+    @Test
+    fun testLevel200() {
+        // given
+        val board = Board.of(
+                """
+            GGRV
+            PROP
+            MBCP
+            BLVL
+            GMVM
+            ROBC
+            LLCC
+            MPOR
+            GBVO
+            
+            
+        """
+        )
+
+        // when
+        val solver = Solver(board)
+        val steps = solver.solve()
+
+        // then
+        assertThat(steps).hasSize(30)
+    }
+
+    @Test
+    fun testLevel225() {
+        // given
+        val board = Board.of(
+                """
+            CBLO
+            ODLD
+            YVMV
+            BLbB
+            RRCG
+            YDDR
+            YCVB
+            bbYO
+            COGV
+            GMPb
+            PPRM
+            MGPL
+            
+            
+        """
+        )
+
+        // when
+        val solver = Solver(board)
+        val steps = solver.solve()
+
+        // then
+        assertThat(steps).hasSize(44)
+    }
 }

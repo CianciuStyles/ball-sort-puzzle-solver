@@ -6,20 +6,20 @@ import io.github.cianciustyles.model.Board
 fun main() {
     val board = Board.of(
         """
-                VYMb
-                PLRR
-                OCVP
-                PPMM
-                BRGb
-                DCGY
-                ObMB
-                OCYV
-                DLLC
-                LRBO
-                GGDV
-                BDYb
-        
-        
+            bCMR
+            RMBD
+            bGMP
+            YLDb
+            GPDO
+            OVGV
+            PBYB
+            DLYP
+            RbLC
+            YOGR
+            VCCM
+            OVBL
+            
+            
     """
     )
 
