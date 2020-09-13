@@ -390,7 +390,7 @@ class SolverTest {
     fun testLevel100() {
         // given
         val board = Board.of(
-                """
+            """
             POVL
             CGCP
             BPOL
@@ -417,7 +417,7 @@ class SolverTest {
     fun testLevel125() {
         // given
         val board = Board.of(
-                """
+            """
             BDCM
             CDOC
             GVBO
@@ -447,7 +447,7 @@ class SolverTest {
     fun testLevel150() {
         // given
         val board = Board.of(
-                """
+            """
             PPMB
             GRLR
             OGLM
@@ -474,7 +474,7 @@ class SolverTest {
     fun testLevel175() {
         // given
         val board = Board.of(
-                """
+            """
             OMRV
             YbPP
             OGCB
@@ -504,7 +504,7 @@ class SolverTest {
     fun testLevel200() {
         // given
         val board = Board.of(
-                """
+            """
             GGRV
             PROP
             MBCP
@@ -531,7 +531,7 @@ class SolverTest {
     fun testLevel225() {
         // given
         val board = Board.of(
-                """
+            """
             CBLO
             ODLD
             YVMV
@@ -555,5 +555,89 @@ class SolverTest {
 
         // then
         assertThat(steps).hasSize(44)
+    }
+
+    @Test
+    fun testLevel250() {
+        // given
+        val board = Board.of(
+            """
+            VGOM
+            GMRB
+            PLLR
+            MPOC
+            VBLP
+            GOBR
+            COLM
+            CBPR
+            VVGC
+            
+            
+        """
+        )
+
+        // when
+        val solver = Solver(board)
+        val steps = solver.solve()
+
+        // then
+        assertThat(steps).hasSize(34)
+    }
+
+    @Test
+    fun testLevel275() {
+        // given
+        val board = Board.of(
+            """
+            GMOC
+            CDPL
+            CMVC
+            GbLR
+            MbVY
+            YLYR
+            BVBL
+            YGOR
+            bDGB
+            MPBP
+            DOVb
+            DRPO
+            
+            
+        """
+        )
+
+        // when
+        val solver = Solver(board)
+        val steps = solver.solve()
+
+        // then
+        assertThat(steps).hasSize(52)
+    }
+
+    @Test
+    fun testLevel300() {
+        // given
+        val board = Board.of(
+            """
+            OCMB
+            CVGL
+            GRRP
+            ROLC
+            RBPO
+            BOVL
+            GPVC
+            BMVM
+            MLGP
+            
+            
+        """
+        )
+
+        // when
+        val solver = Solver(board)
+        val steps = solver.solve()
+
+        // then
+        assertThat(steps).hasSize(35)
     }
 }
