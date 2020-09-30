@@ -640,4 +640,112 @@ class SolverTest {
         // then
         assertThat(steps).hasSize(35)
     }
+
+    @Test
+    fun testLevel350() {
+        // given
+        val board = Board.of(
+                """
+            VVGC
+            PMCB
+            GLRV
+            OLVP
+            RMOL
+            POBC
+            BGRC
+            MLRP
+            OBGM
+            
+            
+        """
+        )
+
+        // when
+        val solver = Solver(board)
+        val steps = solver.solve()
+
+        // then
+        assertThat(steps).hasSize(33)
+    }
+
+    @Test
+    fun testLevel400() {
+        // given
+        val board = Board.of(
+                """
+            VOGO
+            GOLP
+            GMPV
+            LLCP
+            MVRP
+            MOBB
+            RRMG
+            RBCL
+            BVCC
+            
+            
+        """
+        )
+
+        // when
+        val solver = Solver(board)
+        val steps = solver.solve()
+
+        // then
+        assertThat(steps).hasSize(31)
+    }
+
+    @Test
+    fun testLevel450() {
+        // given
+        val board = Board.of(
+                """
+                BLLG
+                BPCM
+                ROVM
+                LGMR
+                PCGG
+                BOBR
+                PCVO
+                VVOM
+                RLCP
+            
+            
+        """
+        )
+
+        // when
+        val solver = Solver(board)
+        val steps = solver.solve()
+
+        // then
+        assertThat(steps).hasSize(34)
+    }
+
+    @Test
+    fun testLevel500() {
+        // given
+        val board = Board.of(
+                """
+                MVRO
+                LBMG
+                LCGR
+                VBVC
+                PGOR
+                LGBP
+                VBCO
+                PMMC
+                PRLO
+            
+            
+        """
+        )
+
+        // when
+        val solver = Solver(board)
+        val steps = solver.solve()
+
+        // then
+        assertThat(steps).hasSize(38)
+    }
 }
