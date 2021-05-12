@@ -645,7 +645,7 @@ class SolverTest {
     fun testLevel350() {
         // given
         val board = Board.of(
-                """
+            """
             VVGC
             PMCB
             GLRV
@@ -672,7 +672,7 @@ class SolverTest {
     fun testLevel400() {
         // given
         val board = Board.of(
-                """
+            """
             VOGO
             GOLP
             GMPV
@@ -699,7 +699,7 @@ class SolverTest {
     fun testLevel450() {
         // given
         val board = Board.of(
-                """
+            """
                 BLLG
                 BPCM
                 ROVM
@@ -726,7 +726,7 @@ class SolverTest {
     fun testLevel500() {
         // given
         val board = Board.of(
-                """
+            """
                 MVRO
                 LBMG
                 LCGR

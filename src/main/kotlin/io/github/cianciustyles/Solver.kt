@@ -41,7 +41,7 @@ class Solver(
 
             val (baseColor, stackSummary) = examineStack(stack)
             stackSummariesByColor
-                .getOrPut(baseColor, { PriorityQueue() })
+                .getOrPut(baseColor) { PriorityQueue() }
                 .add(stackSummary)
         }
 

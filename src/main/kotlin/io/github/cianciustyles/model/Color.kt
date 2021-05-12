@@ -15,9 +15,7 @@ enum class Color(val code: Char) {
     YELLOW('Y');
 
     companion object {
-        private val colorMap = values()
-            .map { Pair(it.code, it) }
-            .toMap()
+        private val colorMap = values().associateBy { it.code }
 
         fun fromCode(code: Char) = colorMap.getValue(code)
     }

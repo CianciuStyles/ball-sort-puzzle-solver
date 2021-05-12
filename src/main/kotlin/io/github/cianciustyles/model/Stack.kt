@@ -27,10 +27,6 @@ data class Stack(private val balls: ArrayDeque<Color>) {
     val size get() = balls.size
 
     companion object {
-        fun of(): Stack {
-            return Stack(ArrayDeque())
-        }
-
         fun of(balls: String): Stack {
             return Stack(ArrayDeque(balls.map { Color.fromCode(it) }))
         }
