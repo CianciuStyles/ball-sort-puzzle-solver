@@ -10,7 +10,7 @@
 
     <properties>
         <kotlin.version>1.6.0</kotlin.version>
-        <kotlin.compiler.languageVersion>1.5</kotlin.compiler.languageVersion>
+        <kotlin.compiler.languageVersion>1.6</kotlin.compiler.languageVersion>
         <kotlin.compiler.incremental>true</kotlin.compiler.incremental>
         <main.class>io.github.cianciustyles.MainKt</main.class>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -58,7 +58,7 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.0</version>
                 <configuration>
-                    <release>11</release>
+                    <release>17</release>
                 </configuration>
             </plugin>
             <plugin>

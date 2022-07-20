@@ -1,6 +1,5 @@
 package io.github.cianciustyles.model
 
-@ExperimentalStdlibApi
 data class Board(val stacks: List<Stack>) {
     fun copy() = Board(stacks.map { it.copy() })
 

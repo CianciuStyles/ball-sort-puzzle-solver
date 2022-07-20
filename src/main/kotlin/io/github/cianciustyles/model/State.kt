@@ -1,6 +1,5 @@
 package io.github.cianciustyles.model
 
-@ExperimentalStdlibApi
 data class State(
     val board: Board,
     val g: Int,

@@ -1,4 +1,5 @@
 package io.github.cianciustyles
+
 import io.github.cianciustyles.model.Action
 import io.github.cianciustyles.model.Board
 import io.github.cianciustyles.model.Color
@@ -7,7 +8,6 @@ import io.github.cianciustyles.model.StackSummary
 import io.github.cianciustyles.model.State
 import java.util.PriorityQueue
 
-@ExperimentalStdlibApi
 class Solver(
     private val board: Board,
     private val stackMaxSize: Int = 4

@@ -1,6 +1,5 @@
 package io.github.cianciustyles.model
 
-@ExperimentalStdlibApi
 data class Stack(private val balls: ArrayDeque<Color>) {
     fun addLast(color: Color) = balls.addLast(color)
 
