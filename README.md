@@ -24,8 +24,8 @@ To run Ball Sort Puzzle Solver:
 1. Change the board declaration in `main.kt` to reflect the initial configuration of the level you are trying to solve. A valid declaration is made of:
     - One line per stack, plus one or two empty lines for the empty stacks
     - Each line made of one letter per color (take the `Color` enum as reference) 
-1. Run `mvn clean compile` in the terminal to re-compile the project.
-1. Run `mvn exec:java` in the terminal to run the solver.
+2. Run `mvn clean compile` in the terminal to re-compile the project.
+3. Run `mvn exec:java` in the terminal to run the solver.
 
 ### Motivation
 I have started playing Ball Sort Puzzle and after the first levels had gone quite smoothly, I quickly ran into some harder levels which I was not able to solve by myself.

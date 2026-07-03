@@ -1,6 +1,8 @@
 package io.github.cianciustyles.model
 
-data class Stack(private val balls: ArrayDeque<Color>) {
+data class Stack(
+    private val balls: ArrayDeque<Color>,
+) {
     fun addLast(color: Color) = balls.addLast(color)
 
     fun copy() = Stack(ArrayDeque(balls))
@@ -26,8 +28,6 @@ data class Stack(private val balls: ArrayDeque<Color>) {
     val size get() = balls.size
 
     companion object {
-        fun of(balls: String): Stack {
-            return Stack(ArrayDeque(balls.map { Color.fromCode(it) }))
-        }
+        fun of(balls: String): Stack = Stack(ArrayDeque(balls.map { Color.fromCode(it) }))
     }
 }

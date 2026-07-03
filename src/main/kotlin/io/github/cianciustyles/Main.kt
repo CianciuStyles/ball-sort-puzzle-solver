@@ -3,8 +3,9 @@ package io.github.cianciustyles
 import io.github.cianciustyles.model.Board
 
 fun main() {
-    val board = Board.of(
-        """
+    val board =
+        Board.of(
+            """
             RGLP
             VPDY
             BVbb
@@ -17,10 +18,10 @@ fun main() {
             YDGD
             PRBP
             MCOG
-            
-            
-    """
-    )
+
+
+    """,
+        )
 
     val solver = Solver(board)
     val steps = solver.solve()

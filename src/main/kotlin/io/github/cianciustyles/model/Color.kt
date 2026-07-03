@@ -1,6 +1,8 @@
 package io.github.cianciustyles.model
 
-enum class Color(val code: Char) {
+enum class Color(
+    val code: Char,
+) {
     BLUE('B'),
     BROWN('b'),
     CYAN('C'),
@@ -12,10 +14,11 @@ enum class Color(val code: Char) {
     PINK('P'),
     RED('R'),
     VIOLET('V'),
-    YELLOW('Y');
+    YELLOW('Y'),
+    ;
 
     companion object {
-        private val colorMap = values().associateBy { it.code }
+        private val colorMap = entries.associateBy { it.code }
 
         fun fromCode(code: Char) = colorMap.getValue(code)
     }

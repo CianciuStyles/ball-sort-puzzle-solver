@@ -10,7 +10,7 @@ import java.util.PriorityQueue
 
 class Solver(
     private val board: Board,
-    private val stackMaxSize: Int = 4
+    private val stackMaxSize: Int = 4,
 ) {
     fun solve(): List<Action> {
         val heap = PriorityQueue<State>()
@@ -19,14 +19,17 @@ class Solver(
 
         while (!heap.isEmpty()) {
             val currentState = heap.poll()
-            if (seen.contains(currentState.board))
+            if (seen.contains(currentState.board)) {
                 continue
-            if (currentState.h == 0)
+            }
+            if (currentState.h == 0) {
                 return rebuildPath(currentState)
+            }
 
             val nextStates = generateActions(currentState)
-            for (nextState in nextStates)
+            for (nextState in nextStates) {
                 heap.add(nextState)
+            }
 
             seen.add(currentState.board)
         }
@@ -103,12 +106,18 @@ class Solver(
         return nextStates.toList()
     }
 
-    private fun isLegalMove(board: Board, i: Int, j: Int): Boolean {
-        if (board[i].isEmpty())
+    private fun isLegalMove(
+        board: Board,
+        i: Int,
+        j: Int,
+    ): Boolean {
+        if (board[i].isEmpty()) {
             return false
+        }
 
-        if (board[j].isEmpty())
+        if (board[j].isEmpty()) {
             return true
+        }
 
         return board[i].last() == board[j].last() && board[j].size < stackMaxSize
     }
